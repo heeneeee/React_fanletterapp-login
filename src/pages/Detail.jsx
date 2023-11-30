@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { removeLetter, editLetter } from "../redux/modules/letters";
 
-const Detail = ({ letter, setLetter }) => {
+const Detail = () => {
   const navigate = useNavigate();
-  const params = useParams();
-  console.log(params);
+  const dispatch = useDispatch();
+  const letters = useSelector((state) => state.letters);
+  // console.log(params);
 
   // 1. ui 먼저 구현
   // 2. 더미데이터 이용해서 우선 값을 불러와보기
@@ -13,33 +16,38 @@ const Detail = ({ letter, setLetter }) => {
 
   const [newContent, setNewContent] = useState("");
   const [isEdit, setIsEdit] = useState(false);
+  const params = useParams();
 
   const toggleisEdit = () => {
     setIsEdit(!isEdit);
-
-    const newLetters = letter.map((item) => {
-      console.log(item);
-      if (item.id === params.id) {
-        return { ...item, contents: newContent };
-      }
-      return item;
-    });
-
-    setLetter(newLetters);
+    console.log(newContent);
+    dispatch(editLetter({ id: params.id, newContent }));
   };
 
-  const deleteTo = (item) => {
-    // console.log(item);
-    const deleted = letter.filter((data) => {
-      return data.id !== item.id;
-    });
-    setLetter(deleted);
+  // const toggleisEdit = () => {
+  //   setIsEdit(!isEdit);
+
+  //   dispatch(editLetter());
+  // };
+  // const newLetters = letters.map((item) => {
+  //   console.log(item);
+  //   if (item.id === params.id) {
+  //     return { ...item, contents: newContent };
+  //   }
+  //   return item;
+  // });
+
+  // setLetter(newLetters);
+
+  const deleteTo = (id) => {
+    dispatch(removeLetter(id));
+    navigate("/");
   };
 
   return (
     <LetterBody>
       <StDetailContainer>
-        {letter.map((item) => {
+        {letters.map((item) => {
           if (item.id === params.id) {
             return (
               <div key={item.id}>
@@ -81,7 +89,7 @@ const Detail = ({ letter, setLetter }) => {
                       <EditBtn onClick={toggleisEdit}>수정하기</EditBtn>
                       <DeleteBtn
                         onClick={() => {
-                          deleteTo(item);
+                          deleteTo(item.id);
                         }}
                       >
                         삭제하기

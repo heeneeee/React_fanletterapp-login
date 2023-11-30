@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Header from "components/Header";
 import Form from "components/Form";
 import LetterBox from "components/LetterBox";
+import Layout from "components/Layout";
 
-const Home = ({ letter, setLetter }) => {
+const Home = () => {
   const kakaoFriends = ["RYAN", "APEACH", "TUBE", "CHOONSIK"];
 
   const [kakao, setKakao] = useState("RYAN");
@@ -14,10 +15,10 @@ const Home = ({ letter, setLetter }) => {
 
   return (
     <div>
+      <Layout />
       <Header />
-      <Form letter={letter} setLetter={setLetter} />
+      <Form />
       <LetterBox
-        letter={letter}
         kakaoFriends={kakaoFriends}
         kakao={kakao}
         setKakao={setKakao}

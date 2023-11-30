@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
+import { useDispatch } from "react-redux";
+import { addLetter } from "redux/modules/letters";
 
-const Form = ({ letter, setLetter }) => {
+const Form = ({}) => {
   const [nickname, setNickname] = useState("");
   const [contents, setContents] = useState("");
   const [member, setMember] = useState("RYAN");
+
+  const dispatch = useDispatch();
 
   // 닉네임 input창 onChange핸들러
   const onChangeNameHandeler = (event) => {
@@ -40,7 +44,9 @@ const Form = ({ letter, setLetter }) => {
       writedTo: member,
     };
 
-    setLetter([...letter, newReply]);
+    dispatch(addLetter(newReply));
+
+    // setLetter([...letter, newReply]);
     setNickname("");
     setContents("");
   };

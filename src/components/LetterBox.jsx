@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const StBody = styled.div`
   display: flex;
@@ -72,13 +73,14 @@ const Contents = styled.p`
   overflow: hidden;
   width: 300px;
 `;
-const LetterBox = ({ letter, kakao, kakaoFriends, nameBtn }) => {
+const LetterBox = ({ kakao, kakaoFriends, nameBtn }) => {
+  const letters = useSelector((state) => state.letters);
   const navigate = useNavigate();
   return (
     <div>
       <StBody>
         <StletterBox>
-          {letter
+          {letters
             .filter((item) => {
               return item.writedTo === kakao;
             })
