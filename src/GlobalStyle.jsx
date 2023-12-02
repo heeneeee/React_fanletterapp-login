@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
       justify-content: center;
       display : flex;
       align-items:center;
+      background-color:#EEF5FF;
     }
 `;
 

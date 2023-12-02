@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removeLetter, editLetter } from "../redux/modules/letters";
+import { __deleteFanLetters } from "redux/modules/fanLetters";
+// import { removeLetter, editLetter } from "../redux/modules/letters";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -39,8 +40,13 @@ const Detail = () => {
 
   // setLetter(newLetters);
 
+  // const deleteTo = (id) => {
+  //   dispatch(removeLetter(id));
+  //   navigate("/");
+  // };
+
   const deleteTo = (id) => {
-    dispatch(removeLetter(id));
+    dispatch(__deleteFanLetters(id));
     navigate("/");
   };
 

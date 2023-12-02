@@ -1,81 +1,32 @@
-import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { __getLetters } from "redux/modules/fanLetters";
+import { useEffect } from "react";
 
-const StBody = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StBtn = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-  border-radius: 30px;
-  position: absolute;
-  top: 190px;
-  left: 50%;
-  transform: translate(-50%, 0%);
-`;
-
-const List = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: nowrap;
-`;
-
-const StletterBox = styled.div`
-  text-align: center;
-  margin-top: 30px;
-  flex-direction: column;
-`;
-const StLetterContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const StLetter = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: lightgray;
-  border-radius: 15px;
-  width: 400px;
-  padding: 30px;
-  margin-top: 30px;
-  height: 150px;
-`;
-
-const CreatedAt = styled.p`
-  margin: 10px;
-`;
-
-const Avatar = styled.p``;
-
-const NicknameAndContents = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Nickname = styled.p`
-  margin: 10px;
-`;
-
-const Contents = styled.p`
-  margin: 10px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 300px;
-`;
 const LetterBox = ({ kakao, kakaoFriends, nameBtn }) => {
+  const dispatch = useDispatch();
+  const { isLoading, error, fanLetters } = useSelector((state) => {
+    return state.fanLetters;
+  });
+
   const letters = useSelector((state) => state.letters);
   const navigate = useNavigate();
+  const { userId, nickname, avatar } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(__getLetters());
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
   return (
     <div>
       <StBody>
@@ -139,3 +90,74 @@ const LetterBox = ({ kakao, kakaoFriends, nameBtn }) => {
 };
 
 export default LetterBox;
+
+const StBody = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  border-radius: 30px;
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+`;
+
+const List = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+`;
+
+const StletterBox = styled.div`
+  text-align: center;
+  margin-top: 30px;
+  flex-direction: column;
+`;
+const StLetterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StLetter = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: eef5ff;
+  border-radius: 15px;
+  width: 400px;
+  padding: 30px;
+  margin-top: 30px;
+  height: 150px;
+  border: 1px solid lightgray;
+`;
+
+const CreatedAt = styled.p`
+  margin: 10px;
+`;
+
+const Avatar = styled.p``;
+
+const NicknameAndContents = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Nickname = styled.p`
+  margin: 10px;
+`;
+
+const Contents = styled.p`
+  margin: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 300px;
+`;

@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
 import { useDispatch } from "react-redux";
-import { addLetter } from "redux/modules/letters";
+// import { addLetter } from "redux/modules/letters";
+import { useSelector } from "react-redux";
+import { __addFanLetters } from "redux/modules/fanLetters";
 
 const Form = ({}) => {
-  const [nickname, setNickname] = useState("");
+  const [userNickname, setNickname] = useState("");
   const [contents, setContents] = useState("");
   const [member, setMember] = useState("RYAN");
+  const { userId, nickname, avatar } = useSelector((state) => state.auth);
+  console.log("유저아이디", userId);
+
+  const { isLoading, error, fanLetters } = useSelector((state) => {
+    return state.fanLetters;
+  });
 
   const dispatch = useDispatch();
 
   // 닉네임 input창 onChange핸들러
-  const onChangeNameHandeler = (event) => {
-    setNickname(event.target.value);
-  };
+  // const onChangeNameHandeler = (event) => {
+  //   setNickname(event.target.value);
+  // };
 
   // 내용 input창 onChange핸들러
   const onChangeContentsHandeler = (event) => {
@@ -29,7 +37,7 @@ const Form = ({}) => {
   //팬레터 등록
   const onSubmitLetter = (event) => {
     event.preventDefault();
-    if (nickname === "" && contents === "") {
+    if (userNickname === "" && contents === "") {
       alert("내용을 입력해주세요!");
       return;
     }
@@ -37,19 +45,34 @@ const Form = ({}) => {
     const newReply = {
       createdAt: new Date().toISOString().replace("T", " ").substring(0, 19),
       id: uuid(),
-      nickname: nickname,
-      avatar:
-        "https://i.namu.wiki/i/qkyqIPNtVxlT_imBEI2g9EzINfuo44pszLQrhac-KMmMls2m3TQBjQrfT251bKldEsV2_um8vDLUYAWNCUbj1A.webp",
-      contents: contents,
+      nickname,
+      avatar,
+      // "https://i.namu.wiki/i/qkyqIPNtVxlT_imBEI2g9EzINfuo44pszLQrhac-KMmMls2m3TQBjQrfT251bKldEsV2_um8vDLUYAWNCUbj1A.webp",
+      contents,
       writedTo: member,
+      nickname,
+      userId,
     };
 
-    dispatch(addLetter(newReply));
+    dispatch(__addFanLetters(newReply));
+    // dispatch(__addLetter(newReply));
 
     // setLetter([...letter, newReply]);
     setNickname("");
     setContents("");
   };
+
+  // useEffect(() => {
+  //   dispatch(__addFanLetters(newReply));
+  // }, []);
+
+  // if (isLoading) {
+  //   return <div>Loading ...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>{error.message}</div>;
+  // }
 
   return (
     // 팬레터 박스
@@ -66,15 +89,7 @@ const Form = ({}) => {
             </StSelect>
             <br />
             {/* 최대글자수제한 기능 넣기 */}
-            닉네임 :
-            <InputNickname
-              name="nickName"
-              type="text"
-              placeholder="닉네임을 입력해주세요 (20자 이내)"
-              value={nickname}
-              onChange={onChangeNameHandeler}
-              maxLength={20}
-            ></InputNickname>
+            <UserNickname>닉네임 : {nickname}</UserNickname>
             <br />내 용 :
             <br />
             <InputContents
@@ -99,42 +114,42 @@ export default Form;
 const FormBox = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  /* align-items: center; */
+  align-content: center;
+  padding-top: 50px;
+  /* align-self:center; */
   align-items: center;
 `;
 
 const StLetterBox = styled.div`
-  background-color: lightgray;
-  width: 700px;
+  background-color: #eef5ff;
+  width: 450px;
   height: 250px;
   border-radius: 15px;
   padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid lightgray;
 `;
 
-const InputNickname = styled.input`
-  width: 300px;
-  margin-left: 10px;
-  border-radius: 5px;
-  border: 0px;
-  height: 20px;
+const UserNickname = styled.div`
+  /* margin-top: 20px; */
+  margin-bottom: 0px;
 `;
 
 const InputContents = styled.input`
   width: 400px;
-  height: 80px;
   border-radius: 5px;
   border: 0px;
-  height: 80px;
+  height: 70px;
 `;
 const StLetterSubmitBtn = styled.button`
   margin-top: 20px;
   margin-left: 320px;
   border-radius: 15px;
   padding: 5px;
-  width: 100px;
+  width: 90px;
   background-color: lightsalmon;
 `;
 

@@ -15,7 +15,6 @@ const Home = () => {
 
   return (
     <div>
-      <Layout />
       <Header />
       <Form />
       <LetterBox
