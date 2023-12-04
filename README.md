@@ -1,90 +1,98 @@
-![Header](https://github.com/heeneeee/fan-letter-app/assets/144337252/46a417bd-600b-46e3-9e0c-090e001b7647)
+https://github.com/heeneeee/React_fanletterapp-login/issues/8#issue-2022959980
 
+Login
+
+사용자가 방문했을 시 로그인을 우선적으로 해야 한다
+비회원이라면 회원가입을 진행할 수 있다
+autofocus로 바로 아이디부터 입력 가능하다다
+
+
+
+https://github.com/heeneeee/React_fanletterapp-login/issues/9#issue-2022962112
+
+SignUp
+
+회원가입을 간단히 진행하면 바로 로그인을 할 수 있게
+로그인 페이지로 이동이 된다
 
 
 Header
 
+https://github.com/heeneeee/React_fanletterapp-login/issues/1#issue-2022953413
+
+
+
 
    
 구현 성공한 기능
-1. 헤더에 위치한 버튼 클릭 시 해당 member의 팬레터 창으로 이동
-
+1. 라우터를 이용하여 Navbar를 모든 페이지에서 이용할 수 있다
+2. 각 페이지 이동 가능
    
 구현하지 못한 기능
-1. 버튼 클릭마다 색이 변한다던지, 커지는 기능 등 조건부 스타일링
+1. 조건부 스타일링
 
 
+개선한 기능
+1. 버튼 호버
 
 --------------------------------------------------------------------------
-![Form_](https://github.com/heeneeee/fan-letter-app/assets/144337252/baa62b02-116b-4eeb-a1fa-2b9097bf30d3)
-
+https://github.com/heeneeee/React_fanletterapp-login/issues/2#issue-2022954812
 
 
 Form
 
-
-
-구현 성공한 기능
-1. 팬레터 작성시 글자 제한
-2. member option 적용
-3. 각 member별로 팬래터 등록 기능
-4. 아무런 입력이 없을 시 alret 창 띄우기
-
-   
-구현하지 못한 기능
-1. 버튼 클릭마다 색 변경 및 사이즈 커지는 기능 등의 조건부 스타일링
+팬레터를 등록할 수 있는 form box
 
 
 
 --------------------------------------------------------------------------
-![LetterBox](https://github.com/heeneeee/fan-letter-app/assets/144337252/46276f00-e352-4ac5-9f3d-a51fb136e174)
 
-
+https://github.com/heeneeee/React_fanletterapp-login/issues/3#issue-2022955562
 
 
 LetteBox
 
 
-
-구현 성공한 기능
-1. 작성 시간 표기
-2. contents 내용이 길어져서 줄 바꿀시 ...으로 표시
-   
-
-   
-구현하지 못한 기능
-1. 이미지 불러오기
-2. 등록 시 기본이미지 설정
-
+addForm에서 입력한 값이 표시되는 부분이다
 
 
 --------------------------------------------------------------------------
-   
-![Detail](https://github.com/heeneeee/fan-letter-app/assets/144337252/fec0c4bc-fddd-4b03-9f7c-2be84a9eb9cc)
-![Detail(수정완료)](https://github.com/heeneeee/fan-letter-app/assets/144337252/e1bc9047-8e2e-4b76-840e-4ae312f96597)
 
+https://github.com/heeneeee/React_fanletterapp-login/issues/4#issue-2022956478
+
+(https://github.com/heeneeee/React_fanletterapp-login/issues/5#issue-2022957038)
 
 
 Detail
 
 
+개선한 기능
+1. 글 수정 기능 
+2. 이미지 불러오는 기능
+3. alret창 띄워서 사용자에게 확인
+   
+--------------------------------------------------------------------------
 
-구현 성공한 기능
-1. 글 삭제 기능
-2. Home 으로 돌아가는 기능
+profile
+https://github.com/heeneeee/React_fanletterapp-login/issues/6#issue-2022957674
+https://github.com/heeneeee/React_fanletterapp-login/issues/7#issue-2022958349
+https://github.com/heeneeee/React_fanletterapp-login/issues/7#issuecomment-1837800030
 
 
-구현하지 못한 기능
-1. 이미지 불러오기
-2. 글 수정 기능
-
-
+로그인한 사용자의 아이디와 닉네임, 프로필을 보여주는 페이지다
+이 페이지에서 수정도 가능하도록 구현하고 싶었지만,
+새로고침을 하면 오류가 뜨며 잘 작동하지 않는다.
 
 --------------------------------------------------------------------------
+
+
+
+   
+--------------------------------------------------------------------------
+
+
+
+
+
 Remind </br>
-아쉬움이 많은 프로젝트였다
-일주일이라는 기간 동안 잘 해낼 수 있을 거라 생각했지만
-뜻대로 되지 않았고 아직 한참 부족하다는 것을 깨달았다
-(context와 redux는 할 엄두도 나질 않았다..ㅠㅠ)
-프로젝트는 프로젝트일뿐이니까 낙심하지 말고 더 공부해서
-리팩토링 과정을 거쳐 최종 완성을 구현해내고 싶다!
+
