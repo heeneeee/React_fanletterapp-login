@@ -1,4 +1,4 @@
-https://github.com/heeneeee/React_fanletterapp-login/issues/8#issue-2022959980
+![image](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/49de0c52-712c-4fd5-8e24-e88ca152d4a9)
 
 Login
 
@@ -7,8 +7,10 @@ Login
 autofocus로 바로 아이디부터 입력 가능하다다
 
 
+--------------------------------------------------------------------------
 
-https://github.com/heeneeee/React_fanletterapp-login/issues/9#issue-2022962112
+![image](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/11945d9f-7b28-4cb2-bc9b-ed6ee9e5a4a1)
+
 
 SignUp
 
@@ -16,13 +18,11 @@ SignUp
 로그인 페이지로 이동이 된다
 
 
+--------------------------------------------------------------------------
+
+![Header](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/27ab484e-76d3-4ad0-bd3e-aea362e7e2d2)
+
 Header
-
-https://github.com/heeneeee/React_fanletterapp-login/issues/1#issue-2022953413
-
-
-
-
    
 구현 성공한 기능
 1. 라우터를 이용하여 Navbar를 모든 페이지에서 이용할 수 있다
@@ -36,18 +36,17 @@ https://github.com/heeneeee/React_fanletterapp-login/issues/1#issue-2022953413
 1. 버튼 호버
 
 --------------------------------------------------------------------------
-https://github.com/heeneeee/React_fanletterapp-login/issues/2#issue-2022954812
 
+![image](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/a40c4cf8-0b32-4280-b6f8-8ffce531396d)
 
 Form
 
 팬레터를 등록할 수 있는 form box
 
 
-
 --------------------------------------------------------------------------
 
-https://github.com/heeneeee/React_fanletterapp-login/issues/3#issue-2022955562
+![image](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/492a6e71-3982-4d99-93b4-544bfb0448e6)
 
 
 LetteBox
@@ -56,11 +55,17 @@ LetteBox
 addForm에서 입력한 값이 표시되는 부분이다
 
 
+개선한 기능
+1. 호버
+2. 이미지 불러오기
+
 --------------------------------------------------------------------------
 
-https://github.com/heeneeee/React_fanletterapp-login/issues/4#issue-2022956478
 
-(https://github.com/heeneeee/React_fanletterapp-login/issues/5#issue-2022957038)
+![image](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/40e97e4b-e048-4f29-bee8-d4aeaa940c46)
+
+![image](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/98852e06-f86a-4d7e-bf4b-d920601f6145)
+
 
 
 Detail
@@ -74,9 +79,9 @@ Detail
 --------------------------------------------------------------------------
 
 profile
-https://github.com/heeneeee/React_fanletterapp-login/issues/6#issue-2022957674
-https://github.com/heeneeee/React_fanletterapp-login/issues/7#issue-2022958349
-https://github.com/heeneeee/React_fanletterapp-login/issues/7#issuecomment-1837800030
+
+![image](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/2f02826c-3c76-42da-8730-0be5863d6341)
+![image](https://github.com/heeneeee/React_fanletterapp-login/assets/144337252/fab655fa-e0fb-42c2-bdf6-0e2f633fffbb)
 
 
 로그인한 사용자의 아이디와 닉네임, 프로필을 보여주는 페이지다
@@ -85,14 +90,13 @@ https://github.com/heeneeee/React_fanletterapp-login/issues/7#issuecomment-18378
 
 --------------------------------------------------------------------------
 
-
-
-   
---------------------------------------------------------------------------
-
-
-
-
-
 Remind </br>
+아직 리팩토링이 많이 필요하다
+토큰 만료도 구현하지 못하였고, env 파일, api파일 등 여러가지 기능도 마찬가지이다
+ </br>
+이번 심화주차가 많이 어렵긴 했어도
+중요한 것을 배워가는 것 같아서 꼭 리팩토링 과정과 확실한 개념정리가 필요할 듯 싶다!
+
+
+
 
