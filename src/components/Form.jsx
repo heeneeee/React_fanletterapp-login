@@ -110,7 +110,7 @@ const FormBox = styled.div`
 const StLetterBox = styled.div`
   background-color: #eef5ff;
   width: 450px;
-  height: 250px;
+  height: 300px;
   border-radius: 15px;
   padding: 30px;
   display: flex;
@@ -120,7 +120,7 @@ const StLetterBox = styled.div`
 `;
 
 const UserNickname = styled.div`
-  /* margin-top: 20px; */
+  margin-top: 30px;
   margin-bottom: 0px;
 `;
 

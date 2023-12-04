@@ -23,26 +23,19 @@ const Detail = () => {
   const params = useParams();
 
   const toggleisEdit = () => {
+    if (!isEdit) {
+      setNewContents(contents);
+    }
     setIsEdit(!isEdit);
-    // console.log(contents);
     dispatch(__editLetters({ id: params.id, contents }));
-    // navigate("/");
+    if (isEdit == true) {
+      if (confirm("이대로 수정을 진행하시겠습니까?")) {
+        navigate("/");
+      } else {
+        return;
+      }
+    }
   };
-
-  // const toggleisEdit = () => {
-  //   setIsEdit(!isEdit);
-
-  //   dispatch(editLetter());
-  // };
-  // const newLetters = letters.map((item) => {
-  //   console.log(item);
-  //   if (item.id === params.id) {
-  //     return { ...item, contents: newContent };
-  //   }
-  //   return item;
-  // });
-
-  // setLetter(newLetters);
 
   const deleteTo = () => {
     dispatch(__deleteFanLetters(params.id));

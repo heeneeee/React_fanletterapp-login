@@ -54,7 +54,7 @@ export default function Profile() {
         console.log("response.data", response.data);
         const userData = response.data;
         setUserProfileNickname(userData.nickname);
-        setUserImage(userData.avatar); // 이미지 주소를 가져오거나, 필요한 정보로 수정
+        setChangedImg(userData.avatar); // 이미지 주소를 가져오거나, 필요한 정보로 수정
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
