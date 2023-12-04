@@ -6,13 +6,8 @@ import Layout from "components/Layout";
 import { useSelector } from "react-redux";
 import Profile from "pages/Profile";
 
-// import { useSelector } from "react-redux";
-
-// //각 멤버들 댓글 상세페이지로 이동
-
 const Router = () => {
   const isLogin = useSelector((state) => state.auth.isLogin);
-  // const userId = useSelector((state) => state.auth.userId);
 
   return (
     <BrowserRouter>

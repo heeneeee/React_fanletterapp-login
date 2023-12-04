@@ -17,7 +17,6 @@ const SimpleButton = styled.button`
   }
 `;
 
-// { children, nameBtn } 써먹기 위해 받아옴
 const Button = ({ children, nameBtn }) => {
   return <SimpleButton onClick={nameBtn}>{children}</SimpleButton>;
 };

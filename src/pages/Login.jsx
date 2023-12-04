@@ -12,10 +12,8 @@ export default function Login() {
   const [userNickname, setUserNickname] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const signUpAPI = (userId, userPw, userNickname);
 
   // 회원가입
-
   const signUp = async (e) => {
     e.preventDefault();
     try {
@@ -55,10 +53,8 @@ export default function Login() {
       console.log("로그인 성공", res);
 
       const { accessToken, userId, avatar, nickname } = res.data;
-      // console.log("res", res.data);
       dispatch(login({ accessToken, userId, avatar, nickname }));
       localStorage.setItem("accessToken", accessToken);
-      // navigate("/");
     } catch (error) {
       const e = error.res.data.message;
       alert(e);

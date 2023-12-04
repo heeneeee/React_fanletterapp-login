@@ -4,9 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "redux/modules/authSlice";
 import { useParams } from "react-router-dom";
 export default function Layout() {
-  // const isLogin = useSelector((state) => {
-  //   state.auth.isLogin;
-  // });
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();

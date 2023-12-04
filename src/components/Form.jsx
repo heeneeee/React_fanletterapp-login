@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import uuid from "react-uuid";
 import { useDispatch } from "react-redux";
-// import { addLetter } from "redux/modules/letters";
 import { useSelector } from "react-redux";
 import { __addFanLetters } from "redux/modules/fanLetters";
 
@@ -11,18 +10,8 @@ const Form = () => {
   const [contents, setContents] = useState("");
   const [member, setMember] = useState("RYAN");
   const { userId, nickname, avatar } = useSelector((state) => state.auth);
-  // console.log("유저아이디", userId);
-
-  // const { isLoading, error, fanLetters } = useSelector((state) => {
-  //   return state.fanLetters;
-  // });
 
   const dispatch = useDispatch();
-
-  // 닉네임 input창 onChange핸들러
-  // const onChangeNameHandeler = (event) => {
-  //   setNickname(event.target.value);
-  // };
 
   // 내용 input창 onChange핸들러
   const onChangeContentsHandeler = (event) => {
@@ -74,7 +63,6 @@ const Form = () => {
               <option value="CHOONSIK">CHOONSIK</option>
             </StSelect>
             <br />
-            {/* 최대글자수제한 기능 넣기 */}
             <UserNickname>닉네임 : {nickname}</UserNickname>
             <br />내 용 :
             <br />
@@ -100,10 +88,8 @@ export default Form;
 const FormBox = styled.div`
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   align-content: center;
   padding-top: 50px;
-  /* align-self:center; */
   align-items: center;
 `;
 

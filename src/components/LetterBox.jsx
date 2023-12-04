@@ -63,14 +63,8 @@ const LetterBox = ({ kakao, kakaoFriends, nameBtn }) => {
 
         <StBtn>
           <List>
-            {/* data 배열에 writedTo랑 kakaoFriends 배열의 값이랑 비교 */}
             {kakaoFriends.map((data) => {
               return (
-                // {data} --> children 으로 전달해줌
-                // nameBtn 으로 전달해줌
-                // 설명듣기 ...
-                // <Button></Button> --> 이놈은 함수임!! 그래서 바로 옆
-                // nameBtn 을 인자값으로 받는 거임 실행시킬 함수 자체를 넘겨준다
                 <Button key={data} nameBtn={() => nameBtn(data)}>
                   {data}
                 </Button>

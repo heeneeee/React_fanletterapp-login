@@ -1,15 +1,14 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { useParams } from "react-router-dom";
 
 const initialState = {
   letters: [],
   isLoading: false,
   isError: false,
-  error: null, // 에러가 발생하면 null에 메세지 등을 채워준다
+  error: null,
 };
-// console.log(fanLetters);
-// ADD!!!!  - ㅇㅇ
+
+// ADD
 export const __addFanLetters = createAsyncThunk(
   "addfanLetters",
   async (payload, thunkAPI) => {
@@ -23,8 +22,8 @@ export const __addFanLetters = createAsyncThunk(
     }
   }
 );
-// console.log(fanLetters);
-// GET!!!!  - ㅇㅇ
+
+// GET
 export const __getLetters = createAsyncThunk(
   "getLetters",
   async (payload, thunkAPI) => {
@@ -39,7 +38,7 @@ export const __getLetters = createAsyncThunk(
   }
 );
 
-// DELETE!!!!
+// DELETE
 export const __deleteFanLetters = createAsyncThunk(
   "deleteFanLetters",
   async (payload, thunkAPI) => {
@@ -56,7 +55,7 @@ export const __deleteFanLetters = createAsyncThunk(
   }
 );
 
-// EDIT!!!!
+// EDIT
 export const __editLetters = createAsyncThunk(
   "editLetters",
   async (payload, thunkAPI) => {
@@ -107,8 +106,6 @@ export const fanLettersSlice = createSlice({
       state.isLoading = false;
       state.isError = false;
       state.letters = action.payload;
-      // console.log("state", action.payload);
-      // console.log("풀필드 : ", action);
     },
     [__getLetters.rejected]: (state, action) => {
       state.isLoading = false;
@@ -124,13 +121,8 @@ export const fanLettersSlice = createSlice({
     [__deleteFanLetters.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      // console.log("stdfsdfsfate", state.letters);
-      // state.letters = state.letters.filter(
-      //   (item) => item.id !== action.payload
-      // );
     },
     [__deleteFanLetters.rejected]: (state, action) => {
-      // console.log("state", state.data);
       state.isLoading = false;
       state.isError = true;
       state.error = action.payload;
@@ -158,5 +150,5 @@ export const fanLettersSlice = createSlice({
   },
 });
 
-export const {} = fanLettersSlice.actions; // extraReducers
+export const {} = fanLettersSlice.actions;
 export default fanLettersSlice.reducer;

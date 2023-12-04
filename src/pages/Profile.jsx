@@ -22,8 +22,6 @@ export default function Profile() {
 
   const fileInput = useRef(null);
 
-  //업로드할 사진 스테이트 따로 해야함
-  // 임시 데이터 - input 창에 입력할 때까지만 유효한 데이터
   const [userProfileNickname, setUserProfileNickname] = useState("희원");
   const { changedImg, setChangedImg } = useState(
     "https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800"
@@ -50,7 +48,6 @@ export default function Profile() {
             },
           }
         );
-        // 왜 닉네임 값을 못 불러오는데 ㅡㅡ
         console.log("response.data", response.data);
         const userData = response.data;
         setUserProfileNickname(userData.nickname);
@@ -108,7 +105,7 @@ export default function Profile() {
   const onImageChangeHandler = (e) => {
     const file = e.target.files[0];
     const imageUrl = URL.createObjectURL(file);
-    // console.log("이미지 좀 ..", file);
+
     setUserImage(imageUrl);
 
     const reader = new FileReader(); //화면에 프로필 사진 표시

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Profile from "./Profile";
 import { __deleteFanLetters, __editLetters } from "redux/modules/fanLetters";
 
 const Detail = () => {
@@ -12,10 +11,6 @@ const Detail = () => {
     (state) => state.fanLetters
   );
   const { userId, nickname, avatar } = useSelector((state) => state.auth);
-
-  // 1. ui 먼저 구현
-  // 2. 더미데이터 이용해서 우선 값을 불러와보기
-  // 3. 해당하는 아이디 값 불러오기 (map함수 순회해서 새로운 배열 반환)
 
   const [contents, setContents] = useState("");
   const [newContents, setNewContents] = useState("");

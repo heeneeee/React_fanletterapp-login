@@ -2,13 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import kakaoFriends from "./kakaoFriends.png";
 
-// const Wrapper = styled.div``;
-
 const StBody = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
-  /* position: relative; */
+
   align-items: center;
   background-image: url(${kakaoFriends});
   background-size: cover;

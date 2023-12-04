@@ -5,7 +5,6 @@ import LetterBox from "components/LetterBox";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { __getLetters } from "redux/modules/fanLetters";
-import GlobalStyle from "GlobalStyle";
 
 const Home = () => {
   const dispatch = useDispatch();
