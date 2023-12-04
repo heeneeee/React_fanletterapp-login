@@ -10,6 +10,11 @@ const SimpleButton = styled.button`
   margin: 20px;
   padding: 5px;
   box-shadow: 3px 3px gray;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.09);
+  }
 `;
 
 // { children, nameBtn } 써먹기 위해 받아옴

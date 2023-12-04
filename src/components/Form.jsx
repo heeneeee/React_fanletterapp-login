@@ -6,16 +6,16 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { __addFanLetters } from "redux/modules/fanLetters";
 
-const Form = ({}) => {
+const Form = () => {
   const [userNickname, setNickname] = useState("");
   const [contents, setContents] = useState("");
   const [member, setMember] = useState("RYAN");
   const { userId, nickname, avatar } = useSelector((state) => state.auth);
-  console.log("유저아이디", userId);
+  // console.log("유저아이디", userId);
 
-  const { isLoading, error, fanLetters } = useSelector((state) => {
-    return state.fanLetters;
-  });
+  // const { isLoading, error, fanLetters } = useSelector((state) => {
+  //   return state.fanLetters;
+  // });
 
   const dispatch = useDispatch();
 
@@ -46,8 +46,8 @@ const Form = ({}) => {
       createdAt: new Date().toISOString().replace("T", " ").substring(0, 19),
       id: uuid(),
       nickname,
-      avatar,
-      // "https://i.namu.wiki/i/qkyqIPNtVxlT_imBEI2g9EzINfuo44pszLQrhac-KMmMls2m3TQBjQrfT251bKldEsV2_um8vDLUYAWNCUbj1A.webp",
+      avatar:
+        "https://mblogthumb-phinf.pstatic.net/MjAyMDExMDFfMyAg/MDAxNjA0MjI5NDA4NDMy.5zGHwAo_UtaQFX8Hd7zrDi1WiV5KrDsPHcRzu3e6b8Eg.IlkR3QN__c3o7Qe9z5_xYyCyr2vcx7L_W1arNFgwAJwg.JPEG.gambasg/%EC%9C%A0%ED%8A%9C%EB%B8%8C_%EA%B8%B0%EB%B3%B8%ED%94%84%EB%A1%9C%ED%95%84_%ED%8C%8C%EC%8A%A4%ED%85%94.jpg?type=w800",
       contents,
       writedTo: member,
       nickname,
@@ -55,24 +55,10 @@ const Form = ({}) => {
     };
 
     dispatch(__addFanLetters(newReply));
-    // dispatch(__addLetter(newReply));
 
-    // setLetter([...letter, newReply]);
     setNickname("");
     setContents("");
   };
-
-  // useEffect(() => {
-  //   dispatch(__addFanLetters(newReply));
-  // }, []);
-
-  // if (isLoading) {
-  //   return <div>Loading ...</div>;
-  // }
-
-  // if (error) {
-  //   return <div>{error.message}</div>;
-  // }
 
   return (
     // 팬레터 박스
@@ -151,6 +137,11 @@ const StLetterSubmitBtn = styled.button`
   padding: 5px;
   width: 90px;
   background-color: lightsalmon;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.09);
+  }
 `;
 
 const StSelect = styled.select`

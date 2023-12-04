@@ -2,9 +2,18 @@ import React, { useState } from "react";
 import Header from "components/Header";
 import Form from "components/Form";
 import LetterBox from "components/LetterBox";
-import Layout from "components/Layout";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { __getLetters } from "redux/modules/fanLetters";
+import GlobalStyle from "GlobalStyle";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(__getLetters());
+  }, []);
+
   const kakaoFriends = ["RYAN", "APEACH", "TUBE", "CHOONSIK"];
 
   const [kakao, setKakao] = useState("RYAN");

@@ -7,11 +7,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [isLogin, setIsLogin] = useState(true);
-  const [userId, setUserId] = useState("");
+  const [dataId, setDataId] = useState("");
   const [userPw, setUserPw] = useState("");
   const [userNickname, setUserNickname] = useState("");
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const signUpAPI = (userId, userPw, userNickname);
 
   // 회원가입
@@ -20,7 +20,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const signUpAPI = {
-        id: userId,
+        id: dataId,
         password: userPw,
         nickname: userNickname,
       };
@@ -29,7 +29,8 @@ export default function Login() {
         signUpAPI
       );
       console.log("회원가입 성공", response);
-      setUserId("");
+      navigate("/");
+      setDataId("");
       setUserPw("");
       setUserNickname("");
     } catch (error) {
@@ -43,7 +44,7 @@ export default function Login() {
     e.preventDefault();
 
     const signInAPI = {
-      id: userId,
+      id: dataId,
       password: userPw,
     };
     try {
@@ -53,21 +54,28 @@ export default function Login() {
       );
       console.log("로그인 성공", res);
 
-      const { accessToken, userId: dataId, avatar, nickname } = res.data;
+      const { accessToken, userId, avatar, nickname } = res.data;
       // console.log("res", res.data);
-      dispatch(login({ accessToken, dataId, avatar, nickname }));
+      dispatch(login({ accessToken, userId, avatar, nickname }));
       localStorage.setItem("accessToken", accessToken);
       // navigate("/");
     } catch (error) {
       const e = error.res.data.message;
       alert(e);
-      // console.error("로그인실패", error);
+      console.error("로그인실패", error);
     }
   };
 
   return (
     <div
-      style={{ backgroundColor: "#f3eeea", height: "100vh", width: "100vw" }}
+      style={{
+        backgroundColor: " #eef5ff",
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "180px",
+      }}
     >
       <LoginContainer>
         <form>
@@ -77,13 +85,13 @@ export default function Login() {
             placeholder="아이디(4-10글자)"
             minLength={4}
             maxLength={10}
-            value={userId}
-            onChange={(e) => setUserId(e.target.value)}
+            value={dataId}
+            onChange={(e) => setDataId(e.target.value)}
             autoFocus
           />
           <br />
           <InPutLogin
-            type="text"
+            type="password"
             placeholder="비밀번호(4-15글자)"
             minLength={4}
             maxLength={15}
@@ -103,19 +111,43 @@ export default function Login() {
           )}
           <LoginBtn>
             {isLogin ? (
-              <button onClick={signIn}>로그인</button>
+              <button
+                onClick={signIn}
+                style={{
+                  width: "300px",
+                  height: "50px",
+                  marginTop: "80px",
+                  borderRadius: "15px",
+                  border: "1px",
+                  backgroundColor: "#dddadafc",
+                }}
+              >
+                로그인
+              </button>
             ) : (
-              <button onClick={signUp}>회원가입</button>
+              <button
+                onClick={signUp}
+                style={{
+                  width: "300px",
+                  height: "50px",
+                  marginTop: "20px",
+                  borderRadius: "15px",
+                  border: "1px",
+                  backgroundColor: "#dddadafc",
+                }}
+              >
+                회원가입
+              </button>
             )}
           </LoginBtn>
           <br />
 
-          <span
+          <div
             onClick={() => setIsLogin((change) => !change)}
-            style={{ color: "grey", fontSize: "14px" }}
+            style={{ color: "grey", fontSize: "14px", marginTop: "0px" }}
           >
             {isLogin ? "회원가입" : "로그인"}
-          </span>
+          </div>
         </form>
       </LoginContainer>
     </div>
@@ -123,11 +155,13 @@ export default function Login() {
 }
 
 const LoginContainer = styled.div`
+  display: flex;
+  justify-content: center;
   text-align: center;
-  width: 400px;
-  height: 450px;
-  background-color: #ebe3d5;
-  border-radius: 10px;
+  width: 450px;
+  height: 500px;
+  background-color: #e6f7d8;
+  border-radius: 20px;
 `;
 
 const InPutLogin = styled.input`
@@ -138,7 +172,11 @@ const InPutLogin = styled.input`
   border-left: none;
   border-image: initial;
   border-bottom: 1px solid gray;
-  width: 360px;
+  width: 350px;
+  height: 25px;
+  border-radius: 20px;
 `;
 
-const LoginBtn = styled.div``;
+const LoginBtn = styled.div`
+  /* width: 200px; */
+`;

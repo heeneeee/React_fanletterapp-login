@@ -1,31 +1,25 @@
 import styled from "styled-components";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { __getLetters } from "redux/modules/fanLetters";
-import { useEffect } from "react";
-
 const LetterBox = ({ kakao, kakaoFriends, nameBtn }) => {
-  const dispatch = useDispatch();
-  const { isLoading, error, fanLetters } = useSelector((state) => {
-    return state.fanLetters;
-  });
-
-  const letters = useSelector((state) => state.letters);
   const navigate = useNavigate();
-  const { userId, nickname, avatar } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(__getLetters());
-  }, []);
+  const { isLoading, letters, isError } = useSelector(
+    (state) => state.fanLetters
+  );
 
   if (isLoading) {
-    return <div>Loading ...</div>;
+    // 로딩 중일 경우 로딩 상태 표시 또는 다른 처리
+    return <p>Loading...</p>;
   }
 
-  if (error) {
-    return <div>{error.message}</div>;
+  if (isError) {
+    // 로딩 중일 경우 로딩 상태 표시 또는 다른 처리
+    return <p>에러...</p>;
   }
+
+  console.log("letters", letters);
 
   return (
     <div>
@@ -125,6 +119,11 @@ const StLetterContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    transform: scale(1.09);
+  }
 `;
 
 const StLetter = styled.div`

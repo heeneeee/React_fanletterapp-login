@@ -1,32 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { data } from "../../shared/data";
+// import { createSlice } from "@reduxjs/toolkit";
+// import { data } from "../../shared/data";
 
-const initialState = data;
+// const initialState = data;
 
-const lettersSlice = createSlice({
-  name: "letters",
-  initialState,
-  reducers: {
-    // addLetter: (state, action) => {
-    //   console.log("이거", action.payload);
-    //   return [...state, action.payload];
-    // },
-    // removeLetter: (state, action) => {
-    //   return state.filter((item) => item.id !== action.payload);
-    // },
-    // editLetter: (state, action) => {
-    //   console.log("ddd", action.payload);
-    //   return state.map((item) => {
-    //     if (item.id === action.payload.id) {
-    //       return { ...item, contents: action.payload.newContent };
-    //     } else {
-    //       return item;
-    //     }
-    //   });
-    // },
-  },
-  extraReducers: {},
-});
+// const lettersSlice = createSlice({
+//   name: "letters",
+//   initialState,
+//   reducers: {
+// addLetter: (state, action) => {
+//   console.log("이거", action.payload);
+//   return [...state, action.payload];
+// },
+// removeLetter: (state, action) => {
+//   return state.filter((item) => item.id !== action.payload);
+// },
+// editLetter: (state, action) => {
+//   console.log("ddd", action.payload);
+//   return state.map((item) => {
+//     if (item.id === action.payload.id) {
+//       return { ...item, contents: action.payload.newContent };
+//     } else {
+//       return item;
+//     }
+//   });
+// },
+//   },
+//   extraReducers: {},
+// });
 
 // const toggleisEdit = () => {
 //     setIsEdit(!isEdit);
@@ -43,4 +43,4 @@ const lettersSlice = createSlice({
 //   };
 
 // export const { } = lettersSlice.actions;
-export default lettersSlice.reducer;
+// export default lettersSlice.reducer;

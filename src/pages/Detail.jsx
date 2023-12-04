@@ -1,28 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { __deleteFanLetters } from "redux/modules/fanLetters";
-// import { removeLetter, editLetter } from "../redux/modules/letters";
+import Profile from "./Profile";
+import { __deleteFanLetters, __editLetters } from "redux/modules/fanLetters";
 
 const Detail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const letters = useSelector((state) => state.letters);
-  // console.log(params);
+  const { isLoading, letters, isError } = useSelector(
+    (state) => state.fanLetters
+  );
+  const { userId, nickname, avatar } = useSelector((state) => state.auth);
 
   // 1. ui 먼저 구현
   // 2. 더미데이터 이용해서 우선 값을 불러와보기
   // 3. 해당하는 아이디 값 불러오기 (map함수 순회해서 새로운 배열 반환)
 
-  const [newContent, setNewContent] = useState("");
+  const [contents, setContents] = useState("");
+  const [newContents, setNewContents] = useState("");
   const [isEdit, setIsEdit] = useState(false);
   const params = useParams();
 
   const toggleisEdit = () => {
     setIsEdit(!isEdit);
-    console.log(newContent);
-    dispatch(editLetter({ id: params.id, newContent }));
+    // console.log(contents);
+    dispatch(__editLetters({ id: params.id, contents }));
+    // navigate("/");
   };
 
   // const toggleisEdit = () => {
@@ -40,14 +44,14 @@ const Detail = () => {
 
   // setLetter(newLetters);
 
-  // const deleteTo = (id) => {
-  //   dispatch(removeLetter(id));
-  //   navigate("/");
-  // };
-
-  const deleteTo = (id) => {
-    dispatch(__deleteFanLetters(id));
-    navigate("/");
+  const deleteTo = () => {
+    dispatch(__deleteFanLetters(params.id));
+    console.log("params.id", params.id);
+    if (confirm("삭제하시겠습니까?")) {
+      navigate("/");
+    } else {
+      return;
+    }
   };
 
   return (
@@ -77,7 +81,7 @@ const Detail = () => {
                       <Textarea
                         autoFocus
                         defaultValue={item.contents}
-                        onChange={(e) => setNewContent(e.target.value)}
+                        onChange={(e) => setContents(e.target.value)}
                       />
                     </>
                   ) : (
@@ -93,13 +97,7 @@ const Detail = () => {
                   ) : (
                     <>
                       <EditBtn onClick={toggleisEdit}>수정하기</EditBtn>
-                      <DeleteBtn
-                        onClick={() => {
-                          deleteTo(item.id);
-                        }}
-                      >
-                        삭제하기
-                      </DeleteBtn>
+                      <DeleteBtn onClick={deleteTo}>삭제하기</DeleteBtn>
                     </>
                   )}
                 </Buttons>
@@ -129,6 +127,7 @@ const LetterBody = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 50px;
   margin-top: 50px;
 `;
 const StDetailContainer = styled.div`
@@ -140,6 +139,8 @@ const StDetailContainer = styled.div`
   width: 1000px;
   height: 600px;
   border-radius: 50px;
+  margin-left: 50px;
+  margin-bottom: 50px;
 `;
 
 const DetailContents = styled.p`
@@ -209,9 +210,9 @@ const Textarea = styled.textarea`
   justify-content: Center;
   background-color: lightyellow;
   width: 800px;
-  height: 120px;
+  height: 80px;
   margin: 0px;
-  /* margin: 30px; */
+  padding: 20px;
 `;
 
 const CancelBtn = styled.button`

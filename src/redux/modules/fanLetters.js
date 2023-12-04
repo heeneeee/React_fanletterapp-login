@@ -3,18 +3,18 @@ import axios from "axios";
 // import { useParams } from "react-router-dom";
 
 const initialState = {
-  fanLetters: [],
+  letters: [],
   isLoading: false,
   isError: false,
   error: null, // 에러가 발생하면 null에 메세지 등을 채워준다
 };
-
-// ADD!!!!
+// console.log(fanLetters);
+// ADD!!!!  - ㅇㅇ
 export const __addFanLetters = createAsyncThunk(
   "addfanLetters",
   async (payload, thunkAPI) => {
     try {
-      const res = await axios.post("http://localhost:5000/fanLetters", payload);
+      const res = await axios.post("http://localhost:5000/letters", payload);
       console.log("__addLetters -> res", res.data);
       return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
@@ -23,15 +23,15 @@ export const __addFanLetters = createAsyncThunk(
     }
   }
 );
-
-// GET!!!!
+// console.log(fanLetters);
+// GET!!!!  - ㅇㅇ
 export const __getLetters = createAsyncThunk(
   "getLetters",
   async (payload, thunkAPI) => {
     try {
-      const res = await axios.get("http://localhost:5000/fanLetters");
+      const res = await axios.get("http://localhost:5000/letters");
       console.log("res", res.data);
-      return thunkAPI.fulfillWithValue();
+      return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       console.log("error", error);
       return thunkAPI.rejectWithValue(error);
@@ -44,9 +44,11 @@ export const __deleteFanLetters = createAsyncThunk(
   "deleteFanLetters",
   async (payload, thunkAPI) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/${id}`);
-      console.log("res", res.data);
-      return thunkAPI.fulfillWithValue();
+      const res = await axios.delete(
+        `http://localhost:5000/letters/${payload}`
+      );
+      console.log("삭제", res.data);
+      return thunkAPI.fulfillWithValue(res.data);
     } catch (error) {
       console.log("error", error);
       return thunkAPI.rejectWithValue(error);
@@ -54,20 +56,23 @@ export const __deleteFanLetters = createAsyncThunk(
   }
 );
 
-// // EDIT!!!!
-// export const __editLetters = createAsyncThunk(
-//   "editLetters",
-//   async (payload, thunkAPI) => {
-//     try {
-//       const res = await axios.post("http://localhost:5000/fanLetters");
-//       console.log("res", res.data);
-//       return thunkAPI.fulfillWithValue();
-//     } catch (error) {
-//       console.log("error", error);
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
+// EDIT!!!!
+export const __editLetters = createAsyncThunk(
+  "editLetters",
+  async (payload, thunkAPI) => {
+    try {
+      const res = await axios.patch(
+        `http://localhost:5000/letters/${payload.id}`,
+        payload
+      );
+      console.log("res", res.data);
+      return thunkAPI.fulfillWithValue(res.data);
+    } catch (error) {
+      console.log("error", error);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 // slice
 export const fanLettersSlice = createSlice({
@@ -83,7 +88,7 @@ export const fanLettersSlice = createSlice({
       console.log("Current state:", state);
       state.isLoading = false;
       state.isError = false;
-      state.fanLetters.push(action.payload);
+      state.letters.push(action.payload);
 
       console.log("Payload from action:", action.payload);
     },
@@ -101,7 +106,8 @@ export const fanLettersSlice = createSlice({
     [__getLetters.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.fanLetters = action.payload;
+      state.letters = action.payload;
+      // console.log("state", action.payload);
       // console.log("풀필드 : ", action);
     },
     [__getLetters.rejected]: (state, action) => {
@@ -118,30 +124,37 @@ export const fanLettersSlice = createSlice({
     [__deleteFanLetters.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isError = false;
-      state.fanLetters = state.fanLetters((item) => item.id !== action.payload);
-      // console.log("풀필드 : ", action);
+      // console.log("stdfsdfsfate", state.letters);
+      // state.letters = state.letters.filter(
+      //   (item) => item.id !== action.payload
+      // );
     },
     [__deleteFanLetters.rejected]: (state, action) => {
+      // console.log("state", state.data);
       state.isLoading = false;
       state.isError = true;
       state.error = action.payload;
     },
-    // //-----------------------------------------------------
-    // [__editLetters.pending]: (state, action) => {
-    //   state.isLoading = true;
-    //   state.isError = false;
-    // },
-    // [__editLetters.fulfilled]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.isError = false;
-    //   state.fanLetters = action.payload;
-    //   // console.log("풀필드 : ", action);
-    // },
-    // [__editLetters.rejected]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.isError = true;
-    //   state.error = action.payload;
-    // },
+    //-----------------------------------------------------
+    [__editLetters.pending]: (state, action) => {
+      state.isLoading = true;
+      state.isError = false;
+    },
+    [__editLetters.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.letters = state.letters.map((item) => {
+        if (item.id === action.payload.id) {
+          return { ...item, isEdit: !item.isEdit };
+        }
+        return item;
+      });
+    },
+    [__editLetters.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.error = action.payload;
+    },
   },
 });
 
