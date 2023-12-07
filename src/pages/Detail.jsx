@@ -19,13 +19,13 @@ const Detail = () => {
 
   const toggleisEdit = () => {
     if (!isEdit) {
-      setNewContents(contents);
+      setNewContents("");
     }
     setIsEdit(!isEdit);
-    dispatch(__editLetters({ id: params.id, contents }));
+    dispatch(__editLetters({ id: params.id, newContents }));
     if (isEdit == true) {
       if (confirm("이대로 수정을 진행하시겠습니까?")) {
-        navigate("/");
+        // navigate("/");
       } else {
         return;
       }
@@ -69,7 +69,7 @@ const Detail = () => {
                       <Textarea
                         autoFocus
                         defaultValue={item.contents}
-                        onChange={(e) => setContents(e.target.value)}
+                        onChange={(e) => setNewContents(e.target.value)}
                       />
                     </>
                   ) : (

@@ -62,7 +62,7 @@ export const __editLetters = createAsyncThunk(
     try {
       const res = await axios.patch(
         `http://localhost:5000/letters/${payload.id}`,
-        payload
+        { contents: payload.newContents }
       );
       console.log("res", res.data);
       return thunkAPI.fulfillWithValue(res.data);
@@ -136,8 +136,9 @@ export const fanLettersSlice = createSlice({
       state.isLoading = false;
       state.isError = false;
       state.letters = state.letters.map((item) => {
+        console.log("eeee", item);
         if (item.id === action.payload.id) {
-          return { ...item, isEdit: !item.isEdit };
+          return { ...item, contents: action.payload.contents };
         }
         return item;
       });

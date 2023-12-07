@@ -171,6 +171,7 @@ const InPutLogin = styled.input`
   width: 350px;
   height: 25px;
   border-radius: 20px;
+  outline: none;
 `;
 
 const LoginBtn = styled.div`
